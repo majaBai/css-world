@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒尺寸四大家族</title>
+  <Style>
+    .img-box {
+      /* width: 400px;
+      height: 400px; */
+      background-color: red;
+    }
+    .img-size{
+      width: 50%;
+      height: 50%;
+
+      /* 去掉图片底部和div之间的间隙 */
+      /* display: block; */
+      /* vertical-align: top; */
+
+      /* object-fit: contain; */
+      /* object-fit: fill; */
+      object-fit: content;
+    }
+  </Style>
+</head>
+<body>
+  <div class='img-box'>
+  <img class='img-size' src='pic1.jpeg'>
+  </div>
+
+  
+  <script>
+    /*
+    盒尺寸中的 4 个盒子 content box、padding box、border box 和 margin box 
+    分别对应 CSS 世界中的 content、padding、border 和 margin 属性
+
+    1. 理解 content
+      -------****------
+      && content和替换元素
+        根据“外在盒子”是内联还是块级我们可以把元素分为内联元素和块级元素，而根据是否具有可替换内容，我们也可以把元素分为替换元素和非替换元素
+        常见替换元素：<img>、<object>、<video>、<iframe>或者表单元素<textarea>、<input>
+        特征：内容可替换
+            内容的外观不受页面上的 CSS 的影响。用专业的话讲就是在样式表现在 CSS 作用域之外
+            有自己的尺寸，默认的尺寸（不包括边框）是 300 像素×150 像素
+            在很多 CSS 属性上有自己的一套表现规则，vertical-align
+                        vertical-align 的默认值的 baseline，很简单的属性值，基线之意，被定义为字符 x 的下边缘
+                        是替换元素的基线就被硬生生定义成了元素的下边缘
+            所有的替换元素都是内联水平元素 
+      
+      -------****-------
+      && 替换元素的尺寸计算（图片为例）
+         1. 固有尺寸 （图片本身的大小）
+         2. HTML 尺寸 <img src="1.jpg" width="128" height="96">
+         3. css 属性
+            <img src="1.jpg" width="128" height="96">
+            img { width: 200px; height: 150px; }
+         4. 如果“固有尺寸”含有固有的宽高比例，同时仅设置了宽度或仅设置了高度，则元素依然按照固有的宽高比例显示
+         5. 如果上面的条件都不符合，则最终宽度表现为 300 像素，高度为 150 像素，宽高比 2:1
+
+         6. 无法改变替换元素内容的固有尺寸，我们的宽高设置修改的并不是图片的固有尺寸
+            而是图片中的 content 替换内容默认的适配方式是填充（fill），也就是外部设定的尺寸多大，我就填满、跟着一样大
+            尺寸变化的本质并不是改变固有尺寸，而是采用了填充作为适配 HTML 尺寸和 CSS 尺寸的方式
+            <img>和其他一些替换元素的替换内容的适配方式可以通过object-fit 属性修改了
+      
+      -------*****-------
+      && 替换元素和非替换元素的距离有多远
+         1. 替换元素和非替换元素之间只隔了一个 src 属性。 <img>去掉 src 属性，其实就是一个和<span>类似的普通的内联标签，也就是成了一个非替换元素
+          
+    
+    
+    
+   */
+  </script>
+  
+</body>
+</html>
