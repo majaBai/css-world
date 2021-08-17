@@ -7,31 +7,132 @@
   <title>盒尺寸四大家族</title>
   <Style>
     .img-box {
-      /* width: 400px;
-      height: 400px; */
+      width: 200px;
+      height: 200px;
       background-color: red;
     }
     .img-size{
-      width: 50%;
-      height: 50%;
+      width: 200px;
+      height: 100%;
 
       /* 去掉图片底部和div之间的间隙 */
-      /* display: block; */
+      display: inline-block;
       /* vertical-align: top; */
 
       /* object-fit: contain; */
       /* object-fit: fill; */
-      object-fit: content;
+      /* object-fit: content; */
     }
+    .test-padding {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      text-align: center;
+    }
+    a + a::before {
+      content: "";
+      font-size: 0;
+      padding: 10px 3px 1px;
+      margin-left: 6px;
+      border-left: 1px solid red;
+    }
+    .father-square {
+      width: 300px;
+    }
+    .square {
+      /* padding:50%; */
+      width: 50%;
+      display: inline-block;
+      background-color: hotpink;
+    }
+    .title-box {
+      padding: 10% 50%;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .title-box > img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+    button {
+      position: absolute;
+      /* 裁剪元素 */
+      clip: rect(0 0 0 0); 
+    }
+    label {
+      display: inline-block;
+      line-height: 20px;
+      padding: 10px;
+    } 
+    .father-margin { width: 300px; background-color: red; }
+    .son-margin { margin: 0 -20px; background-color: lawngreen;}
+
+    .box { overflow: hidden; border: 1px solid red}
+    .box > img { float: left; width:200px; }
+    .box > p { margin-left: 140px; }
+
+    ul {
+    margin-right: -20px;
+    background-color: red;
+    }
+    ul > li {
+    float: left;
+    width: 100px;
+    margin-right: 20px;
+    background-color: lawngreen;
+    text-decoration: none;
+    } 
   </Style>
 </head>
 <body>
-  <div class='img-box'>
-  <img class='img-size' src='pic1.jpeg'>
-  </div>
+    <!-- <div class='img-box'>
+    <img class='img-size' src='pic1.jpeg'>
+    </div> -->
+   
+    <!-- 通过 padding 实现高度可控的管道符 -->
+    <!-- <span class='test-padding'>内联元素padding垂直方向 50px + 事件</span>
+    <div class='pipeline'>
+      <a href="">登录</a><a href="">注册</a>
+    </div> -->
 
-  
+    <!-- 通过padding实现正方形 -->
+    <!-- <div class='father-square'>
+      <span class='square'></span>
+      <img class='square' src='pic1.jpeg'/>
+    </div> -->
+
+    <!-- <div class='title-box'>
+      <img src="pic1.jpeg" alt="">
+    </div> -->
+
+    
+    <!-- <button id="btn"></button>
+    <label for="btn">按钮</label> -->
+
+    <!-- margin 应用 -->
+    <!-- <div class="father-margin">
+      <div class="son-margin">qqq</div>
+     </div>  -->
+
+     <!-- <div class="box">
+      <img src="pic1.jpeg">
+      <p>1.文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容...</p>
+     </div>  -->
+
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+
   <script>
+    const testSpan = document.querySelector('.test-padding')
+    testSpan.addEventListener('click', ()=>{
+      alert('clicked span or padding-area')
+    })
     /*
     盒尺寸中的 4 个盒子 content box、padding box、border box 和 margin box 
     分别对应 CSS 世界中的 content、padding、border 和 margin 属性
@@ -66,11 +167,49 @@
       
       -------*****-------
       && 替换元素和非替换元素的距离有多远
-         1. 替换元素和非替换元素之间只隔了一个 src 属性。 <img>去掉 src 属性，其实就是一个和<span>类似的普通的内联标签，也就是成了一个非替换元素
-          
+         1. 相差了一个 src 属性。 <img>去掉 src 属性，其实就是一个和<span>类似的普通的内联标签，也就是成了一个非替换元素
+         2. 相差了一个content属性，即4大盒子中的 content-box 
+              (谷歌浏览器下所有元素都支持content， 但通过content属性生成的所有内容只是视觉可见，不可选中，右击图片不能保存，文字不能选中)
+         
+      ------*****--------
+      && content 与替换元素关系剖析
+      content 属性生成的对象称为“匿名替换元素”
+          1. content 生成的文本是无法选中、无法复制的，效果 userselect:none；
+             只能用来生成一些无关紧要的内容，如装饰性图形或者序号
+          2. 不能左右:empty 伪类。:empty 是一个 CSS 选择器，当元素里面无内容的时候进行匹配。
+      
+      -----*****---------
+      content 内容生成技术
+          1.生成辅助元素，比如标记符号等
+          （其他内容生成比如图片，图标字体等以及计数器不常用，略）
+
+    2. 理解padding属性
+      ------******-------
+      1）padding 与元素尺寸
+        CSS 中默认的 box-sizing 是 content-box，所以使用 padding 会增加元素的尺寸
+        内联元素的 padding 虽然在垂直方向上不占据位置，但是选中元素时或者设置了 background-color时，padding是存在的，并且绑定的事件也会在padding范围内生效
+        (内联元素在垂直方向上的视觉效果，只能通过line-height\vertical-align 进行设置)
+        对于非替换元素的内联元素，padding ，margin 和 border不会加入行盒高度的计算,但实际上在内联盒周围发生了渲染。
+
+      -------******------
+      2) padding 百分比
+        不支持负数（与margin不同）
+        百分比值无论是水平方向还是垂直方向均是相对于宽度计算
+        内联元素默认的高度完全受 font-size 大小控制, 内联元素的垂直 padding 会让“幽灵空白节点”显现
+      
+      ------******-------
+      3）padding 图形绘制
     
-    
-    
+    3. 理解 margin 属性
+      -------*****-------
+      1） margin 与元素尺寸
+      元素尺寸：border box 的尺寸，原生的 DOM API 中的 offsetWidth 和 offsetHeight
+      元素内部尺寸：padding box 的尺寸，原生的 DOM API 中的 clientWidth 和 clientHeight
+      元素外部尺寸（可能为负数）：margin box 尺寸，无原生 API
+
+      2) 应用：
+      一栏定宽，另一栏自适应的两栏布局
+
    */
   </script>
   
