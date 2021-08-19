@@ -6,45 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>盒尺寸四大家族</title>
   <Style>
-    .img-box {
+    /* .img-box {
       width: 200px;
       height: 200px;
       background-color: red;
-    }
-    .img-size{
+    } */
+    /* .img-size{
       width: 200px;
       height: 100%;
 
-      /* 去掉图片底部和div之间的间隙 */
       display: inline-block;
-      /* vertical-align: top; */
-
-      /* object-fit: contain; */
-      /* object-fit: fill; */
-      /* object-fit: content; */
-    }
-    .test-padding {
+    } */
+    /* .test-padding {
       padding-top: 50px;
       padding-bottom: 50px;
       text-align: center;
-    }
-    a + a::before {
+    } */
+    /* a + a::before {
       content: "";
       font-size: 0;
       padding: 10px 3px 1px;
       margin-left: 6px;
       border-left: 1px solid red;
-    }
-    .father-square {
+    } */
+    /* .father-square {
       width: 300px;
     }
     .square {
-      /* padding:50%; */
       width: 50%;
       display: inline-block;
       background-color: hotpink;
-    }
-    .title-box {
+    } */
+    /* .title-box {
       padding: 10% 50%;
       position: relative;
       box-sizing: border-box;
@@ -56,10 +49,9 @@
       height: 100%;
       left: 0;
       top: 0;
-    }
-    button {
+    } */
+    /* button {
       position: absolute;
-      /* 裁剪元素 */
       clip: rect(0 0 0 0); 
     }
     label {
@@ -77,13 +69,49 @@
     ul {
     margin-right: -20px;
     background-color: red;
+    display: inline-block;
+    padding: 0;
+    }
+    ul::after{
+      content: '';
+      display: block;
+      clear: both;
     }
     ul > li {
     float: left;
     width: 100px;
     margin-right: 20px;
     background-color: lawngreen;
-    text-decoration: none;
+    list-style-type: none;
+    } 
+    li:nth-of-type(3n) {
+      margin-right: 0;
+    }  */
+    /* .box {
+      width: 400px;
+      display: flex;
+    }
+    .left{
+      width: 50%;
+      background-color: hotpink;
+      text-align: center;
+    }
+    .right{
+      width: 50%;
+      background-color: lawngreen;
+      text-align: center;
+    } */
+
+    .box {
+    background-color: olive;
+    overflow: hidden;
+    /* width: 100px;
+    height: 100px; */
+    }
+    .box > div {
+    margin: 50%;
+    height: 10px;
+    width:10px
     } 
   </Style>
 </head>
@@ -122,20 +150,67 @@
       <p>1.文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容...</p>
      </div>  -->
 
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <!-- <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul> -->
+
+        <!-- <div style="height:100px; padding:50px 10px;background-color: hotpink; overflow: auto;">
+          <img src="pic1.jpeg" height="150">
+        </div>  -->
+
+        <!-- <div class='box'>
+          <div class='left'>
+            <h4>正方</h4>
+            <div>观点1</div>
+          </div>
+          <div class='right'>
+            <h4>正方</h4>
+            <div>观点1</div>
+          </div>
+        </div>
+
+        <button class='for-btn'>添加正方观点</button>
+        <button class='anti-btn'>添加反方观点</button> -->
+
+        <div class="box">
+          <div></div>
+         </div>
 
   <script>
-    const testSpan = document.querySelector('.test-padding')
-    testSpan.addEventListener('click', ()=>{
-      alert('clicked span or padding-area')
-    })
+    // const testSpan = document.querySelector('.test-padding')
+    // testSpan.addEventListener('click', ()=>{
+    //   alert('clicked span or padding-area')
+    // })
+    // function createNewNode () {
+    //   let node = document.createElement('div')
+    //   node.innerText = '新观点'
+    //   return node
+    // }
+    // function bindEvent (ele, eventName, parentNode) {
+    //   ele.addEventListener(eventName , () => {
+    //     parentNode.appendChild(createNewNode())
+    //   })
+    // }
+    // function addEvents() {
+    //   let forBtn = document.querySelector('.for-btn')
+    //   let antiBtn = document.querySelector('.anti-btn')
+    //   let leftbox = document.querySelector('.left')
+    //   let rightbox = document.querySelector('.right')
+    //   bindEvent(forBtn, 'click', leftbox)
+    //   bindEvent(antiBtn, 'click', rightbox)
+    // }
+    function main () {
+      // addEvents()
+    }
+    main()
     /*
     盒尺寸中的 4 个盒子 content box、padding box、border box 和 margin box 
     分别对应 CSS 世界中的 content、padding、border 和 margin 属性
+
+    Chrome 浏览器是子元素超过 content box 尺寸触发滚动条显示
+    IE 和 Firefox 浏览器是超过 padding box 尺寸
 
     1. 理解 content
       -------****------
@@ -191,13 +266,11 @@
         (内联元素在垂直方向上的视觉效果，只能通过line-height\vertical-align 进行设置)
         对于非替换元素的内联元素，padding ，margin 和 border不会加入行盒高度的计算,但实际上在内联盒周围发生了渲染。
 
-      -------******------
       2) padding 百分比
         不支持负数（与margin不同）
         百分比值无论是水平方向还是垂直方向均是相对于宽度计算
         内联元素默认的高度完全受 font-size 大小控制, 内联元素的垂直 padding 会让“幽灵空白节点”显现
       
-      ------******-------
       3）padding 图形绘制
     
     3. 理解 margin 属性
@@ -207,9 +280,36 @@
       元素内部尺寸：padding box 的尺寸，原生的 DOM API 中的 clientWidth 和 clientHeight
       元素外部尺寸（可能为负数）：margin box 尺寸，无原生 API
 
-      2) 应用：
+      margin 对内联元素垂直、水平方向的是没有任何影响的，既不会影响外部尺寸，也不会影响内部尺寸
+                             
+      2) 应用：(实例太陈旧，很多使用弹性盒子布局就能处理)
       一栏定宽，另一栏自适应的两栏布局
+      两栏等高布局
 
+      3) margin 的百分比
+      百分比值无论是水平方向还是垂直方向均是相对于宽度计算
+      相对于 padding，margin 的百分比值的应用价值就低了一截，根本原因在于和 padding不同，元素设置 margin 在垂直方向上无法改变元素自身的内部尺寸，往往需要父元素作为载体
+      
+      4) margin 的折叠
+       块级元素（不包括绝对定位的元素），垂直方向
+       阻止 margin 合并：父元素设置为块状格式化上下文元素；
+                        父元素设置 border-top\bottom值
+                        父元素设置 padding-top\bottom 值
+                        父元素和第一个\最后子元素之间添加内联元素进行分隔
+       margin 合并的计算规则总结为“正正取大值”“正负值相加”“负负最负值”
+      
+      5) 理解 margin : auto
+       如果一侧定值，一侧 auto，则 auto 为剩余空间大小
+       如果两侧均是 auto，则平分剩余空间
+
+      4. 理解 border 属性
+      -------******--------
+       && border-width 不支持百分比
+       && border-style：none，solid,dashed，dotted, double
+                        inset（内凹）、outset（外凸）、groove（沟槽）、ridge（山脊）
+       && border-color: 默认是 color 的色值
+       && 透明边框技巧： 增加元素可点击范围
+                       三角形
    */
   </script>
   
