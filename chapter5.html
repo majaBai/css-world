@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>内联元素与流</title>
+
+  <style>
+    /* .test1 {
+    font-size: 16px;
+    line-height: 0;
+    border: 1px solid #ccc;
+    background: #eee;
+    } 
+    .test2 {
+    font-size: 0px;
+    line-height: 16px;
+    border: 1px solid #ccc;
+    background: #eee;
+    }  */
+
+    /* p {
+    font-size: 100px;
+    line-height: 120px;
+    background-color: #666;
+    font-family: 'microsoft yahei';
+    color: #fff;
+    } 
+    .box {
+      line-height: 120px;
+      background-color: lawngreen;
+      width:280px;
+      margin: auto;
+    }
+    .content {
+      display: inline-block;
+      line-height: 20px;
+      margin: 0 20px;
+      vertical-align: middle;
+    } */
+    /* .box1 {
+    line-height: 96px;
+    background-color: red;
+    }
+    .box1 span {
+    line-height: 20px;
+    display: inline-block;
+
+    } 
+    .box2 {
+    line-height: 20px;
+    background-color: lawngreen;
+    }
+    .box2 span {
+    line-height: 96px;
+    }
+    .arrow {
+      transform: rotate(90deg);
+      display: inline-block;
+      margin-left: 6px;
+    } */
+    /* .box {
+    height: 128px;
+    line-height: 128px; 
+    background-color: lawngreen;
+    }
+    .box > img {
+    height: 96px;
+    vertical-align: middle; 
+    }  */
+    /* .box {
+      border: 1px solid gray;
+      line-height: 1;
+    }
+    .box > img {
+      height:100px;
+      width: 100px;
+      vertical-align: bottom;
+      display: block;
+    } */
+    .dib-baseline {
+      display: inline-block;
+      width: 150px; height: 150px;
+      border: 1px solid #cad5eb;
+      background-color: #f0f3f9;
+    } 
+  </style>
+</head>
+<body>
+  <!-- <div class="test1">我1的高度是？</div>
+  <div class="test2">我2的高度是？</div> -->
+
+  <!-- <p>微软雅黑x</p>
+  <div class="box">
+    <div class="content">基于行高实现的基于行高实现的基于行高实现的基于行高实现的基于行高实现的基于行高实现的...</div>
+   </div>  -->
+
+   <!-- <div class="box1">
+    <span>内容...</span>
+   </div>
+
+   <div class="box2">
+    <span>内容...</span>
+   </div>
+
+   <div>
+     请选择<span class='arrow'>></span>
+   </div> -->
+
+   <!-- <div class="box">
+    <img src="pic1.jpeg">
+    <span>x是吧</span>
+   </div> -->
+
+   <span class="dib-baseline"></span>
+<span class="dib-baseline">x-baseline</span>
+
+  <script>
+    /*
+    1. 基线
+      字母 x 的下边缘（线）就是我们的基线，凡是涉及垂直方向的排版或者对齐的，都离不开最基本的基线
+      line-height 行高的定义就是两基线的间距，vertical-align 的默认值就是基线
+      x-height 指的就是小写字母 x 的高度，就是基线和等分线（meanline）之间的距离
+
+      内联元素默认都是沿着字母 x 的下边缘对齐的。中文和部分英文字形的下边缘要低于字母 x 的下边缘
+      对于图片等替换元素，往往使用元素本身的下边缘作为基线
+    
+    2. 内联元素的基石 line-height
+      line-height 实现的单行文本垂直居中为“近似垂直居中”
+      line-height + vertival-align 实现多行文本或替换元素的垂直居中: 多行文字使用一个标签包裹，然后设置 display 为 inline-block
+                                                                内联元素默认都是基线对齐,设置 verticalalign:middle
+    
+      line-height 属性：
+      值：数值，line-height: 1.5, 实际计算是 1.5 * font-size
+         百分比，也是相对于 font-size
+         长度值 px
+
+         负值全部都是基于基线往下偏移，正值全部都是往上偏移
+         最好使用数值、长度值，因为涉及子元素继承问题
+
+      内联元素 line-height 的大值特性
+    3. vertical-align 属性
+      值：线类，如 baseline（默认值）、top、middle、bottom
+          文本类，如 text-top、text-bottom
+          上标下标类，如 sub、super
+          数值百分比类，如 20px、2em、20%等, 百分比相对于 line-height 计算
+
+      vertical-align 生效前提：只能应用于内联元素以及 display 值为 table-cell 的元素
+                              即<span>、<strong>、<em>等内联元素，<img>、<button>、<input>等替换元素
+                              以及display 为 inline\inline-block\inline-table
+    
+      vertical-align 线类属性：&& inline-block 与 baseline
+                                一个 inline-block 元素，如果里面没有内联元素，或者 overflow 不是 visible，
+                                 则该元素的基线就是其 margin 底边缘；否则其基线就是元素里面最后一行内联元素的基线
+    
+    
+    
+    
+                                
+                                
+  */                        
+  </script>
+  
+</body>
+</html>
