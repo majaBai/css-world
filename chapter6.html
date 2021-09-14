@@ -5,8 +5,238 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>流的破坏和保护</title>
+
+  <style>
+    /* .father { 
+      width: 200px; 
+      background-color: red;
+    }
+    .float { float: left;background-color: green; }
+    .float > img { width: 128px; display: block;} */
+
+  /* a {
+    float: right;
+  }   */
+
+  /* .father { 
+ overflow: hidden; 
+} 
+.father > img { 
+ width: 60px; height: 64px; 
+ float: left; 
+} 
+.animal { 
+ margin-left: 70px; 
+} */
+
+/* .flex-father {
+  display: flex;
+}
+.left-img {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.prev { 
+ float: left; 
+} 
+.next { 
+ float: right; 
+} 
+.title { 
+ margin: 0 70px; 
+ text-align: center; 
+}
+.flex-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-btn {
+  flex-shrink: 0;
+}
+.flex-title {
+  text-align: center;
+} */
+/* li { 
+ width: 20px; height: 20px; 
+ margin: 5px; 
+ float: left; 
+} 
+li:nth-of-type(3) { 
+ clear: both; 
+} */
+
+/* .father {
+    border: 1px solid #444;
+    overflow: hidden;
+}
+.father > img {
+    width: 60px; height: 64px;
+    float: left;
+}
+.animal {
+    margin-left: 70px;
+}
+.clear {
+    clear: both;
+}
+.clear:after { 
+ content: ''; 
+ display: table; 
+ clear: both; 
+} */
+
+/* BFC 自适应布局 */
+/* .father {
+    border: 1px solid #444;
+    overflow: hidden;
+}
+.father > img {
+    width: 60px; height: 64px;
+    float: left;
+    margin-right: 10px;
+}
+.animal { overflow: auto; } */
+
+.box { width: 400px; overflow: scroll; }
+  </style>
 </head>
 <body>
-  
+  <!-- <div class="father">
+    <div class="float">
+    <img src="pic1.jpeg">
+    </div>
+  </div>  -->
+
+  <!-- <h3>标题足够长的标题，会长到换行啊<a href="#">更多</a></h3> -->
+
+<!-- 一侧定宽的两栏自适应 -->
+  <!-- <div class="father"> 
+    <img src="pic1.jpeg"> 
+    <p class="animal">小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2，...</p> 
+   </div> -->
+<!-- flex 两栏布局 -->
+   <!-- <div class='flex-father'>
+    <img class='left-img' src="pic1.jpeg"> 
+    <p class="animal">小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2，...</p> 
+   </div> -->
+
+<!-- 三栏布局 -->
+<!-- <div class="box"> 
+  <a href class="prev">&laquo; 上一章</a> 
+  <a href class="next">下一章 &raquo;</a> 
+  <h3 class="title">第 112 章 动物环绕</h3> 
+ </div> -->
+<!-- flex 三栏布局 -->
+ <!-- <div class="flex-box"> 
+  <a href class='flex-btn'>&laquo; 上一章</a> 
+  <h3 class='flex-title'>第 112 章 动物环绕</h3>
+  <a href class='flex-btn'>下一章 &raquo;</a> 
+ </div> -->
+
+ <!-- <ul>
+   <li>1</li>
+   <li>2</li>
+   <li>3</li>
+   <li>4</li>
+   <li>5</li>
+   <li>6</li>
+   <li>7</li>
+ </ul> -->
+
+ <!-- <div class="father"> 
+  <img src="pic1.jpeg"> 
+  <div class="animal"> 
+ 小猫 1，小猫 2，
+  <div class="clear"></div> 
+ 小猫 3，小猫 4，... 
+  </div> 
+ </div> -->
+
+ <!-- BFC 自适应布局 -->
+ <!-- <div class="father"> 
+  <img src="pic1.jpeg"> 
+  <div class="animal"> 
+   小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，小猫 1，小猫 2，小猫 3，小猫 4，... 
+  </div> 
+ </div> -->
+
+ <!-- 获取滚动条 -->
+ <!-- <div class="box"> 
+  <div id="in" class="in"></div> 
+ </div> -->
+
+ <a href="#1">发展历程></a> 
+ <h2 id="1">发展历程</h2>
+
+  <script>
+    // console.log(400 - document.getElementById("in").clientWidth);
+    /*
+    1. float 属性
+    -------******-------
+    特性：包裹性；
+         块状化并格式化上下文, 一旦设置了 float 的值不为 none, 则 display 计算值为 block或table
+         破坏文档流；
+         没有任何 margin 合并；
+    
+    父元素高度塌陷，行框盒子如果和浮动元素的垂直高度有重叠，则行框盒子在正常定位状态下只会跟随浮动元素，而不会发生重叠（文字环绕效果）
+    float 元素的“浮动参考”是“行框盒子”，也就是 float 元素在当前“行框盒子”内定位；没有“行框盒子”，“浮动锚点”产生“行框盒子”
+    
+    float 与流体布局：一侧定宽的两栏自适应；三栏布局 （使用 flex 布局可轻松搞定）
+    
+    float 的天敌 clear
+    none：默认值，左右浮动来就来。
+    left：左侧抗浮动。
+    right：右侧抗浮动。
+    both：两侧抗浮动。
+
+    clear 属性元素让盒子的边不能和 "前面的" (后面的不作用)浮动元素相邻，作用于元素自身，而不是作用于 float 元素
+    clear 属性只有块级元素才有效的，而::after 等伪元素默认都是内联水平，这就是借助伪元素清除浮动影响时需要设置 display 属性值的原因
+    
+    2. css 世界中的结界 BFC （块级格式化上下文）
+    -------******----------
+    如果一个元素具有 BFC，内部子元素再怎么翻江倒海、翻云覆雨，都不会影响外部的元素
+    BFC 元素也可以用来清除浮动的影响，因为如果不清除，子元素浮动则父元素高度塌陷，必然会影响后面元素布局和定位
+
+    产生 BFC 结界：
+     <html>根元素
+     float 的值不为 none
+     overflow 的值为 auto、scroll 或 hidden； 
+     display 的值为 table-cell、table-caption 和 inline-block 中的任何一个；
+     position 的值不为 relative 和 static
+    只要元素符合上面任意一个条件，就无须使用 clear:both 属性去清除浮动的影响了
+    
+   overflow 最佳结界
+   有很多其他 CSS 声明也能清除浮动，但基本上都会让元素的宽度表现为“包裹性”，也就是会影响原来的样式布局，而 overflow:hidden 声明不会影响元素原先的流体特性或宽度表现
+   “结界”只是其衍生出来的特性，“剪裁”才是其本职工作
+   剪裁的边界是 border box 的内边缘，而非 padding box 的内边缘
+
+   visible：默认值。
+   hidden：剪裁。
+   scroll：滚动条区域一直在。
+   auto：不足以滚动时没有滚动条，可以滚动时滚动条出现
+
+
+   滚动条
+   整体部分，::-webkit-scrollbar； 
+   两端按钮，::-webkit-scrollbar-button； 
+   外层轨道，::-webkit-scrollbar-track； 
+   内层轨道，::-webkit-scrollbar-track-piece； 
+   滚动滑块，::-webkit-scrollbar-thumb； 
+   边角，::-webkit-scrollbar-corner
+
+   依赖 overflow 的样式表现
+   更多省略...
+   textoverflow:ellipsis
+   white-space: nowrap; 
+   overflow: hidden;
+
+   锚点：让页面定位到某个位置的点,本质上是通过改变容器滚动高度或者宽度来实现的
+
+
+    */
+  </script>
 </body>
 </html>
