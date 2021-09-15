@@ -101,6 +101,61 @@ li:nth-of-type(3) {
 .animal { overflow: auto; } */
 
 .box { width: 400px; overflow: scroll; }
+
+.container {
+  display: flex;
+  border: 1px solid gray;
+  width: 400px;
+  align-items: center;
+}
+.change-container-display {
+  display: block !important;
+  overflow: hidden;
+  padding: 4px;
+}
+
+.add-btn {
+  border: 1px dashed gray;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.txt-box {
+  max-width: 400px;
+  display: inline-block;
+  padding: 4px;
+}
+.change-txt-box-display {
+  display: inline;
+  padding: 0px;
+}
+
+.text-ellipse {
+  text-overflow:ellipsis;
+  white-space: nowrap; 
+  overflow: hidden;
+
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; */
+}
+
+.more-btn {
+  margin-left: 10px;
+  width: 40px;
+  flex-shrink: 0;
+  color: blue;
+}
+.hidden {
+  display: none;
+}
+.show-more-btn {
+  display: block;
+}
+.change-more-btn-display {
+  float: right;
+}
   </style>
 </head>
 <body>
@@ -111,8 +166,8 @@ li:nth-of-type(3) {
   </div>  -->
 
   <!-- <h3>标题足够长的标题，会长到换行啊<a href="#">更多</a></h3> -->
-
-<!-- 一侧定宽的两栏自适应 -->
+ 
+<!-- 一侧定的两栏自适应 -->
   <!-- <div class="father"> 
     <img src="pic1.jpeg"> 
     <p class="animal">小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2小猫 1，小猫 2，...</p> 
@@ -170,9 +225,60 @@ li:nth-of-type(3) {
 
  <a href="#1">发展历程></a> 
  <h2 id="1">发展历程</h2>
-
+ 
+ <div class='add-btn'>添加文字</div>
+ <div class='container'>
+  <span class='txt-box text-ellipse'>更多文字省略显示</span>
+  <span class='more-btn hidden'>展开</span>
+ </div>
+ 
   <script>
     // console.log(400 - document.getElementById("in").clientWidth);
+    function bindEvents () {
+      const btn = document.querySelector('.add-btn')
+      const ele = document.querySelector('.txt-box')
+      btn.addEventListener('click', () => {
+        ele.innerText += '更多文字' 
+        handleOverflow()
+      })
+
+      const moreBtn =  document.querySelector('.more-btn')
+      moreBtn.addEventListener('click', () => {
+          const container = document.querySelector('.container')
+          console.log('click more btn')
+          ele.classList.toggle('text-ellipse')
+          ele.classList.toggle('change-txt-box-display')
+          container.classList.toggle('change-container-display')
+          moreBtn.classList.toggle('change-more-btn-display')
+          moreBtn.innerText = moreBtn.innerText === '展开' ? '收起' : '展开'
+        })
+
+    }
+
+    function handleOverflow () {
+      const ele = document.querySelector('.txt-box')
+      const clientWidth = ele.clientWidth
+      const clientHeight = ele.clientHeight
+      const scrollWidth = ele.scrollWidth
+      const scrollHeight = ele.scrollHeight
+      console.log(clientWidth, scrollWidth)
+
+      // 横向溢出 || 纵向溢出 scrollHeight > clientHeight 
+      if (scrollWidth > clientWidth) {
+        console.log('文字溢出')
+        const moreBtn =  document.querySelector('.more-btn')
+        moreBtn.classList.remove('hidden')
+        moreBtn.classList.add('show-more-btn')
+
+        
+      }
+    }
+
+    function main () {
+      bindEvents()
+    }
+
+    main()
     /*
     1. float 属性
     -------******-------
@@ -229,7 +335,7 @@ li:nth-of-type(3) {
 
    依赖 overflow 的样式表现
    更多省略...
-   textoverflow:ellipsis
+   text-overflow:ellipsis
    white-space: nowrap; 
    overflow: hidden;
 
