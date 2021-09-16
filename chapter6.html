@@ -100,9 +100,9 @@ li:nth-of-type(3) {
 }
 .animal { overflow: auto; } */
 
-.box { width: 400px; overflow: scroll; }
+/* .box { width: 400px; overflow: scroll; } */
 
-.container {
+/* .container {
   display: flex;
   border: 1px solid gray;
   width: 400px;
@@ -134,11 +134,11 @@ li:nth-of-type(3) {
   white-space: nowrap; 
   overflow: hidden;
 
-  /* overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; */
+  -webkit-box-orient: vertical;
 }
 
 .more-btn {
@@ -155,6 +155,18 @@ li:nth-of-type(3) {
 }
 .change-more-btn-display {
   float: right;
+} */
+
+.box {
+  height: 120px;
+  border: 1px solid #bbb;
+  /* overflow: hidden 也会发生锚点定位 */
+  /* overflow: auto; */
+  overflow: hidden;
+}
+.content {
+  height: 200px;
+  background-color: #eee;
 }
   </style>
 </head>
@@ -223,14 +235,22 @@ li:nth-of-type(3) {
   <div id="in" class="in"></div> 
  </div> -->
 
+<!-- 
  <a href="#1">发展历程></a> 
- <h2 id="1">发展历程</h2>
+ <h2 id="1">发展历程</h2> -->
  
- <div class='add-btn'>添加文字</div>
+ <!-- <div class='add-btn'>添加文字</div>
  <div class='container'>
   <span class='txt-box text-ellipse'>更多文字省略显示</span>
   <span class='more-btn hidden'>展开</span>
- </div>
+ </div> -->
+
+ <!-- 锚点定位 -->
+ <div class="box"> 
+  <div class="content"></div> 
+  <h4 id="title">底部标题</h4> 
+ </div> 
+ <p><a href="#title">点击测试</a></p>
  
   <script>
     // console.log(400 - document.getElementById("in").clientWidth);
@@ -275,7 +295,7 @@ li:nth-of-type(3) {
     }
 
     function main () {
-      bindEvents()
+      // bindEvents()
     }
 
     main()
@@ -339,8 +359,11 @@ li:nth-of-type(3) {
    white-space: nowrap; 
    overflow: hidden;
 
-   锚点：让页面定位到某个位置的点,本质上是通过改变容器滚动高度或者宽度来实现的
+   overflow 和锚点定位
+   锚点：让页面定位到某个位置的点,本质上是通过改变容器滚动高度或者宽度来实现的 (document.querySelector('.box').scrollTop = 200)
+        锚点定位也可以发生在普通的容器元素（不仅仅是浏览器整个窗口）上，而且定位行为的发生是由内而外的；设置了 overflow:hidden 的元素也是可滚动的（只是看不见，但是锚点定位时是存在的）
 
+   
 
     */
   </script>
