@@ -102,71 +102,73 @@ li:nth-of-type(3) {
 
 /* .box { width: 400px; overflow: scroll; } */
 
-/* .container {
-  display: flex;
-  border: 1px solid gray;
-  width: 400px;
-  align-items: center;
-}
-.change-container-display {
-  display: block !important;
-  overflow: hidden;
-  padding: 4px;
-}
 
-.add-btn {
-  border: 1px dashed gray;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-.txt-box {
-  max-width: 400px;
-  display: inline-block;
-  padding: 4px;
-}
-.change-txt-box-display {
-  display: inline;
-  padding: 0px;
-}
-
-.text-ellipse {
-  text-overflow:ellipsis;
-  white-space: nowrap; 
-  overflow: hidden;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-}
-
-.more-btn {
-  margin-left: 10px;
-  width: 40px;
-  flex-shrink: 0;
-  color: blue;
-}
-.hidden {
-  display: none;
-}
-.show-more-btn {
-  display: block;
-}
-.change-more-btn-display {
-  float: right;
-} */
-
-.box {
+/* .box {
   height: 120px;
   border: 1px solid #bbb;
-  /* overflow: hidden 也会发生锚点定位 */
-  /* overflow: auto; */
+  overflow: hidden 也会发生锚点定位
+  overflow: auto;
   overflow: hidden;
 }
 .content {
   height: 200px;
   background-color: #eee;
+} */
+
+/* .test-display {
+  background-color: green;
+  position: absolute;
+  display: inline-block;
+}
+
+p { text-align: right; } 
+p > span { position: relative; } 
+p > span > img {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  right: 0;
+} */
+
+.cover {
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 10px;
+}
+.list {
+  position:relative;
+}
+.tag {
+  background-color: red;
+  color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  padding: 0 4px;
+}
+
+.tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  border-width: 8px 5px;
+  border-style: solid;
+  border-color: red red transparent transparent;
+}
+
+.warning {
+  color:red;
+  padding-left: 20px;
+}
+.icon-warn {
+  position: absolute; 
+ margin-left: -26px; 
+ width: 24px; 
+ height: 24px; 
+ background: url(icon.png) no-repeat center;
 }
   </style>
 </head>
@@ -238,64 +240,39 @@ li:nth-of-type(3) {
 <!-- 
  <a href="#1">发展历程></a> 
  <h2 id="1">发展历程</h2> -->
- 
- <!-- <div class='add-btn'>添加文字</div>
- <div class='container'>
-  <span class='txt-box text-ellipse'>更多文字省略显示</span>
-  <span class='more-btn hidden'>展开</span>
- </div> -->
+
 
  <!-- 锚点定位 -->
- <div class="box"> 
+ <!-- <div class="box"> 
   <div class="content"></div> 
   <h4 id="title">底部标题</h4> 
  </div> 
- <p><a href="#title">点击测试</a></p>
+ <p><a href="#title">点击测试</a></p> -->
+
+ <!-- <div class='test-display'>巴拉巴拉小魔仙巴拉巴拉小魔仙巴拉巴拉小魔仙巴</div> -->
+
+ <!-- <p> 
+  <span> 
+  <img src="pic1.jpeg"> 
+  </span> 
+ </p> -->
+
+ <div class="list">
+  <img src="pic1.jpeg" class="cover">
+  <div class="cell">
+      <h4 class="title">标题1</h4>
+      <p class="desc">这是一段很长的内容这是一段很长的内容这是一段很长的内容这是一段很长的内容。</p>
+  </div>
+  <span class="tag">皇冠</span>
+</div>
+
+<span class='warning'>
+  <i class='icon-warn'></i>邮箱格式不正确
+</span>
  
   <script>
-    // console.log(400 - document.getElementById("in").clientWidth);
-    function bindEvents () {
-      const btn = document.querySelector('.add-btn')
-      const ele = document.querySelector('.txt-box')
-      btn.addEventListener('click', () => {
-        ele.innerText += '更多文字' 
-        handleOverflow()
-      })
-
-      const moreBtn =  document.querySelector('.more-btn')
-      moreBtn.addEventListener('click', () => {
-          const container = document.querySelector('.container')
-          console.log('click more btn')
-          ele.classList.toggle('text-ellipse')
-          ele.classList.toggle('change-txt-box-display')
-          container.classList.toggle('change-container-display')
-          moreBtn.classList.toggle('change-more-btn-display')
-          moreBtn.innerText = moreBtn.innerText === '展开' ? '收起' : '展开'
-        })
-
-    }
-
-    function handleOverflow () {
-      const ele = document.querySelector('.txt-box')
-      const clientWidth = ele.clientWidth
-      const clientHeight = ele.clientHeight
-      const scrollWidth = ele.scrollWidth
-      const scrollHeight = ele.scrollHeight
-      console.log(clientWidth, scrollWidth)
-
-      // 横向溢出 || 纵向溢出 scrollHeight > clientHeight 
-      if (scrollWidth > clientWidth) {
-        console.log('文字溢出')
-        const moreBtn =  document.querySelector('.more-btn')
-        moreBtn.classList.remove('hidden')
-        moreBtn.classList.add('show-more-btn')
-
-        
-      }
-    }
-
+   
     function main () {
-      // bindEvents()
     }
 
     main()
@@ -333,8 +310,9 @@ li:nth-of-type(3) {
      display 的值为 table-cell、table-caption 和 inline-block 中的任何一个；
      position 的值不为 relative 和 static
     只要元素符合上面任意一个条件，就无须使用 clear:both 属性去清除浮动的影响了
-    
-   overflow 最佳结界
+  
+    ---------*******---------
+   3.overflow 最佳结界
    有很多其他 CSS 声明也能清除浮动，但基本上都会让元素的宽度表现为“包裹性”，也就是会影响原来的样式布局，而 overflow:hidden 声明不会影响元素原先的流体特性或宽度表现
    “结界”只是其衍生出来的特性，“剪裁”才是其本职工作
    剪裁的边界是 border box 的内边缘，而非 padding box 的内边缘
@@ -363,7 +341,22 @@ li:nth-of-type(3) {
    锚点：让页面定位到某个位置的点,本质上是通过改变容器滚动高度或者宽度来实现的 (document.querySelector('.box').scrollTop = 200)
         锚点定位也可以发生在普通的容器元素（不仅仅是浏览器整个窗口）上，而且定位行为的发生是由内而外的；设置了 overflow:hidden 的元素也是可滚动的（只是看不见，但是锚点定位时是存在的）
 
-   
+  ---------*****---------
+  4. float 的兄弟-- 绝对定位 position: absolute  
+   absolute 和 float 同时存在的时候，float属性是无任何效果的
+  特性：包裹性
+       块状化
+       破坏性
+  包含块：
+        根元素（很多场景下可以看成是<html>）被称为“初始包含块”，其尺寸等同于浏览器可视窗口的大小。 ------- position: fixed 的包含块
+        对于其他元素，如果该元素的 position 是 relative 或者 static，则“包含块”由其最近的块容器祖先盒的 content box 边界形成  ------- position: absolute 的包含块
+  
+  absolute 包含块：内联元素也可以作为“包含块”所在的元素；
+           最近的 position 不为 static 的祖先元素或根元素；
+           边界是 padding box 而不是 content box
+           “宽度自适应性”其实也是相对于“包含块”来表现的,绝对定位元素默认的最大宽度就是“包含块”的宽度
+  没有设置 left/top/right/bottom 属性值的绝对定位称为“无依赖绝对定位”,“无依赖绝对定位”的图标是自动跟在文字后面显示的
+  
 
     */
   </script>
