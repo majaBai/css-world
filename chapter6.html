@@ -130,7 +130,7 @@ p > span > img {
   right: 0;
 } */
 
-.cover {
+/* .cover {
   width: 100px;
   height: 100px;
   float: left;
@@ -157,9 +157,9 @@ p > span > img {
   border-width: 8px 5px;
   border-style: solid;
   border-color: red red transparent transparent;
-}
+} */
 
-.warning {
+/* .warning {
   color:red;
   padding-left: 20px;
 }
@@ -169,6 +169,17 @@ p > span > img {
  width: 24px; 
  height: 24px; 
  background: url(icon.png) no-repeat center;
+} */
+.logo {
+  background: url('./pic1.jpeg') no-repeat center;
+  height: 100px
+}
+
+h1 {
+position: absolute; 
+clip: rect(0, 0, 0, 0); 
+z-index: 10;
+cursor: pointer;
 }
   </style>
 </head>
@@ -257,22 +268,32 @@ p > span > img {
   </span> 
  </p> -->
 
- <div class="list">
+ <!-- <div class="list">
   <img src="pic1.jpeg" class="cover">
   <div class="cell">
       <h4 class="title">标题1</h4>
       <p class="desc">这是一段很长的内容这是一段很长的内容这是一段很长的内容这是一段很长的内容。</p>
   </div>
   <span class="tag">皇冠</span>
-</div>
+</div> -->
 
-<span class='warning'>
+<!-- <span class='warning'>
   <i class='icon-warn'></i>邮箱格式不正确
-</span>
+</span> -->
  
+<div class="logo"> 
+  <h1>CSS 世界</h1>
+</div>
   <script>
+    function bindEvent () {
+      const ele = document.querySelector('h1')
+      ele.addEventListener('click', () => {
+        window.alert('clip')
+      })
+    }
    
     function main () {
+      bindEvent()
     }
 
     main()
@@ -357,6 +378,28 @@ p > span > img {
            “宽度自适应性”其实也是相对于“包含块”来表现的,绝对定位元素默认的最大宽度就是“包含块”的宽度
   没有设置 left/top/right/bottom 属性值的绝对定位称为“无依赖绝对定位”,“无依赖绝对定位”的图标是自动跟在文字后面显示的
   
+  absolute 与 overflow: 绝对定位元素不总是被父级overflow 属性剪裁
+                        如果overflow 不是定位元素，同时绝对定位元素和 overflow 容器之间也没有定位元素，则overflow 无法对 absolute 元素进行剪裁。
+  绝对定位元素的流体特性: 对立方向同时发生定位的时候, 比如 left: 0; right: 0;
+  .box { 
+    position: absolute; 
+    left: 0; right: 0; top: 0; bottom: 0; 
+  }
+  完全覆盖浏览器的可视窗口，并且如果改变浏览器窗口大小，.box 会自动跟着一起变化
+  ---------*******---------
+  5. clip 裁剪属性
+     position: absolute/fixed 
+     clip: rect(top, right, bottom, left)
+     使用 clip 进行剪裁的元素其clientWidth 和 clientHeight 包括样式计算的宽高都还是原来的大小, 只决定哪部分可见，不改变高度宽度
+
+  --------********--------
+  6. relative 属性
+  特性： 相对于自身；无侵入
+        相对定位元素的 left/top/right/bottom的百分比值是相对于包含块计算的
+  注意：使用时尽量缩小 relative 的作用范围
+
+  ------******-------------
+  7. fixed 属性
 
     */
   </script>
