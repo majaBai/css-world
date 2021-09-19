@@ -5,21 +5,114 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>文本处理</title>
+  <style>
+    del{
+      color: red;
+    }
+    del > span {
+      color: black
+    }
+
+    .price::first-letter { 
+    margin-right: 5px; 
+    font-size: xx-large; 
+    vertical-align: -2px; 
+    color: red;
+    }
+  </style>
 </head>
 <body>
+  <del>
+  <span>189 元</span>
+  </del>
+
+  <p class='price'>¥399</p>
   <script>
     /*
+    --------*****------
+    1.一些属性
+
     line-height 的数值属性值和百分比值属性值都是相对于 font-size 计算的
     vertical-align百分比值属性值都是相对于 line-height 计算的
     
     font-size: ex --- 字符 x 高度
                em --- 1em 的计算值等同于当前元素所在的 font-size 计算值
                rem --- 根元素 em 大小
+               ch ---- 1ch 表示一个 0 字符的宽度
     
                Chrome 浏览器下有个 12px 的字号限制，最小12px
     
+    font-size: 0 文字隐藏
+
+    --------*******------
+     font-family
+
+    font-family 默认值由操作系统和浏览器共同决定
+    font-family: simsun; 字体族
+    font-family: 'Microsoft Yahei'; 字体名
+
+    html { font-family: -apple-system, BlinkMacSystemFont, 'Microsoft YaHei'; }
+
+    衬线字体（笔画开始、结束的地方有额外装饰而且笔画的粗细会有所不同，比如宋体、Times New Roman）
+    无衬线字体（字体没有这些额外的装饰，而且笔画的粗细差不多，比如微软雅黑）
+
+    等宽字体，一般是针对英文字体而言的。东亚字体应该都是等宽的
+
+     font-weight 表示“字重”，通俗点讲，就是表示文字的粗细程度
+    平常用的最多的 
+    font-weight: normal; 
+    font-weight: bold; 
+
+    相对于父级元素 
+    font-weight: lighter; 
+    font-weight: bolder; 
+
+    字重的精细控制(100- 900，所有这些数值关键字浏览器都是支持的，之所以没有看到任何粗细的变化，是因为我们的系统里面缺乏对应粗细的字体)
+    font-weight: 400; normal 
+    font-weight: 700; bold
+
+    @font face 本质上就是一个定义字体或字体集的变量，
+                 这个变量不仅仅是简单地自定义字体，还包括字体重命名、默认字体样式设置等。
+      @font-face { 
+      font-family: 'example'; 
+      src: url(example.ttf);  //src 表示引入的字体资源可以是系统字体，也可以是外链字体
+      font-style: normal; 
+      font-weight: normal; 
+      unicode-range: U+0025-00FF; 
+      }
+
+  --------*****-------
+   3. 文本控制
+   text-indent 与内联元素缩进 （text-indent 负值隐藏文本内容）
+   letter-spacing 可以用来控制字符之间的间距，这里说的“字符”包括英文字母、汉字以及空格等, 默认值是 normal, 支持负值
+   word-spacing 单词间距, 作用于空格, love 虽然是一个单词，但没有空格，那么对其设置 word-spacing 无效
+   word-break ：normal：使用默认的换行规则。
+                break-all：允许任意非 CJK（Chinese/Japanese/Korean）文本间的单词断行。（不会出现空白行，满一行强制换行）
+                keep-all：不允许 CJK 文本中的单词换行，只能在半角空格或连字符处换行 （移动端多不支持）
+   word-wrap/overflow-wrap：normal 正常的换行规则
+              break-word：一行单词中实在没有其他靠谱的换行点的时候换行(可能出现半行空白，因为会在合适的换行点换行)
+   white-space 换行和空格的控制
+   white-space 属性声明了如何处理元素内的空白字符，这类空白字符包括 Space（空格）键、Enter（回车）键、Tab（制表符）键产生的空白
+              normal：合并空白字符和换行符（敲了 10 个空格，结果页面就 1 个；把多个连续换行合并成 1 个，并当作 1 个普通空格处理）
+              pre：空白字符不合并，并且内容只在有换行符的地方换行。
+              nowrap：该值和 normal 一样会合并空白字符，但不允许文本环绕。（文本溢出，不换行）
+              pre-wrap：空白字符不合并，并且内容只在有换行符的地方换行，同时允许文本环绕。（文字内容超出容器宽度时，会自动从下一行开始显示）
+              pre-line：合并空白字符，但只在有换行符的地方换行，允许文本环绕。
+   text-align: justify 两端对齐， 需要满足两点：一是有分隔点，如空格；二是要超过一行
+   text-justify: inter-ideograph; “国际象形文字”
+
+   text-decoration：underline ，可用 border-bottom 代替，避免下划线与文字紧贴的问题
+                    overline，通过套一个<del>标签
+   
+   text-transform: uppercase/lowercase 转换大小写
+
+  --------****------
+  ::first-letter/::first-line 伪元素
+   只能作用在块级元素上
+   仅支持部分 CSS 属性(字体、背景相关属性)
     
-    */
+  
+*/
   </script>
   
 </body>

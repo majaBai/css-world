@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单</title>
+    <style>
+        .regist-box {
+            width: 387px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .regist-group {
+            margin: 20px;
+            overflow: hidden;
+        }
+        .regist-star {
+            color: red;
+        }
+        .regist-lable {
+            float: left;
+            width: 70px;
+            padding-top: 10px;
+        }
+        .regist-warn {
+            padding-left: 16px;
+            color: red;
+        }
+        .warning-icon {
+            position: absolute; 
+            margin-left: -18px; 
+            width: 16px; 
+            height: 20px;
+            background: url('https://demo.cssworld.cn/images/6/warn.gif') no-repeat center;
+        }
+        .regist-ceil {
+            display: table-cell;
+        }
+        .regist-input {
+            height: 20px;
+            line-height: 20px;
+            width: 260px;
+            padding: 9px 5px;
+            border: 1px solid #d0d6d9;
+            border-radius: 4px;
+            vertical-align: top;
+        }
+        .regist-btn {
+            width: 160px;
+            line-height: 40px;
+            background-color: #be0000;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .hidden{
+            visibility: hidden;
+        }
+        .regist-remark {
+            position:absolute;
+            margin: 10px 0 0 10px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class='regist-box'>
+        <div class='regist-group'>
+            <label class='regist-lable'>
+                <span class='regist-star'>*</span>
+                邮箱
+            </label>
+            <div class='regist-ceil'>
+                <input type="email" class='regist-input' data-id="#email-tip">
+                <!-- 无依赖绝对定位，自动跟随输入框 -->
+                <span class='regist-remark regist-warn hidden' id='email-tip'>
+                    <i class='warning-icon'></i>
+                    邮箱格式不准确（示意）
+                </span>
+            </div>
+        </div>
+        <div class='regist-group'>
+            <label class='regist-lable'>
+                <span class='regist-star'>*</span>
+                密码
+            </label>
+            <div class='regist-ceil'>
+                <input type="password" class='regist-input' data-id="#password-tip">
+                <span class='regist-remark hidden' id='password-tip'>
+                    请输入6-16位密码，不能使用空格
+                </span>
+            </div>
+        </div>
+        <div class='regist-group'>
+            <label class='regist-lable'>
+                手机号
+            </label>
+            <div class='regist-ceil'>
+                <input type="tel" class='regist-input'>
+            </div>
+        </div>
+        <div class='regist-group'>
+            <label class='regist-lable'></label>
+            <div class='regist-ceil'>
+                <div class='regist-btn'>立即注册</div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <script>
+        function bindEvents () {
+            const inputs = document.querySelectorAll('.regist-input')
+            bindAll(inputs)
+        }
+
+        function bindAll (elements) {
+            elements.forEach(ele => {
+              ele.addEventListener('click', (e) => {
+                const id = e.target.dataset.id
+                if (id) {
+                    const goal = document.querySelector(id)
+                    goal.classList.toggle('hidden')
+                }
+              })
+            })
+        }
+        function main() {
+            bindEvents()
+        }
+        main()
+    </script>
+    
+</body>
+</html>
