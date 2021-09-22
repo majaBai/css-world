@@ -376,7 +376,7 @@ cursor: pointer;
            最近的 position 不为 static 的祖先元素或根元素；
            边界是 padding box 而不是 content box
            “宽度自适应性”其实也是相对于“包含块”来表现的,绝对定位元素默认的最大宽度就是“包含块”的宽度
-  没有设置 left/top/right/bottom 属性值的绝对定位称为“无依赖绝对定位”,“无依赖绝对定位”的图标是自动跟在文字后面显示的
+  没有设置 left/top/right/bottom 属性值的绝对定位称为“无依赖绝对定位”,本质就是不占据 CSS 流的尺寸空间的相对于自身的定位，“无依赖绝对定位”的图标是自动跟在文字后面显示的
   
   absolute 与 overflow: 绝对定位元素不总是被父级overflow 属性剪裁
                         如果overflow 不是定位元素，同时绝对定位元素和 overflow 容器之间也没有定位元素，则overflow 无法对 absolute 元素进行剪裁。
