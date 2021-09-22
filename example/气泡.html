@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>气泡</title>
+  <style>
+    .bubble {
+      min-height: 40px;
+      background-color: #C5E7FE;
+      border: 1px solid #B2DAFB;
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 18px;
+      position: relative;
+      width: 80vw;
+    }
+    .bubble__arrow {
+      content: '';
+      position: absolute;
+      top: 25px;
+      width: 0;
+      height: 0;
+      border: transparent solid 10px;
+
+      left: -19px;
+      /* 第一个小三角较大，颜色深，作为边 */
+      border-right-color: #B2DAFB; 
+    }
+    .bubble__arrow::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: transparent solid 12px;
+      /* 第二个小三角较小，覆盖大部分第一个小三角，颜色和气泡背景色一样，作为真正的小三角 */
+      border-right-color: #C5E7FE;
+      left: -11px;
+      top: -12px;
+    }
+  </style>
+</head>
+<body>
+  <div class='bubble'>
+    你好哈
+    <div class="bubble__arrow"></div>
+  </div>
+  
+</body>
+</html>
