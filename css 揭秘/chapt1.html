@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css 编码技巧</title>
+  <style>
+    html{
+      font-size: 16px;
+    }
+    .btn-1, .btn-2, .btn-3{
+      width: 80px;
+      text-align: center;
+      padding: 6px 16px;
+      border: 1px solid #446d88;
+      background: #58a linear-gradient(#77a0bb, #58a);
+      border-radius: 4px;
+      box-shadow: 0 1px 5px gray;
+      color: white;
+      text-shadow: 0 -1px 1px #335166;
+      font-size: 20px;
+      line-height: 30px;
+      margin: 0.5rem 0
+    }
+
+    .btn-2, .btn-3{
+      font-size: 28px;
+      /* 行高的数字和百分比是相对于 font-size */
+      line-height: 1.5;
+    }
+    .btn-3 {
+      /* 将 font-size 与根元素字号联系 1.4rem =  1.4 * html.fontSize */
+      font-size: 1.4rem;
+    }
+    .btn-4, .btn-5, .btn-6{
+      /* 将所有单位变为 rem, 这样可以根据 html.fontSize 控制按钮的所有尺寸*/
+      width: 4.6rem;
+      padding: .3rem .8rem;
+      border: 1px solid #446d88;
+      border-radius: .2rem;
+      color: white;
+      text-shadow: 0 -.05rem .05rem #335166;
+      font-size: 125%;
+      line-height: 1.5;
+      background: #58a linear-gradient(#77a0bb, #58a);
+      box-shadow: 0 .05rem .25rem gray;
+      margin: 0.5rem 0
+    }
+    .btn-5, .btn-6{
+      /* 自定义按钮的颜色, 只需修改背景色，其他颜色便会跟着主色调一起变化，因为把半透明的黑色或白色叠加在主色调上，即可产生主色调的亮
+       色和暗色变体 */
+      border: 1px solid rgba(0,0,0,.1);
+      background: red linear-gradient(hsla(0,0%,100%,.2),transparent);
+      box-shadow: 0 .05em .25em rgba(0,0,0,.5);
+      text-shadow: 0 -.05em .05em rgba(0,0,0,.5)
+    }
+    .btn-6 {
+      background-color: green;
+    }
+
+    .callout {
+      position: relative;
+      /* background: navajowhite linear-gradient(hsla(0, 0%, 100%, 0.2), transparent);
+      border: 1px solid rgba(0, 0 ,0 0.1); */
+      background: navajowhite;
+      border: 1px solid gray;
+      padding: 0.2rem;
+    }
+    .callout::before{
+      content: "";
+      position: absolute;
+      border: inherit;
+      padding:0.35rem;
+      top: -7px;
+      left: 33px;
+      background: inherit;
+      border-right: 0;
+      border-bottom: 0;
+      transform: rotate(45deg);
+    }
+
+  </style>
+</head>
+<body>
+  <div class='btn-1'>Yes-1</div>
+  <div class='btn-2'>Yes-2</div>
+  <div class='btn-3'>Yes-3</div>
+  <div class='btn-4'>Yes-4</div>
+  <div class='btn-5'>Yes-5</div>
+  <div class='btn-6'>Yes-6</div>
+
+  <div class='callout'>
+    我是一个消息气泡，提示框框或者别的啥框框
+  </div>
+  <script>
+    /*
+    -----****——----
+    1. 减少重复代码
+      currentColor: 很多 CSS 颜色属性的初始值，比如border-color、outline-color、text-shadow、box-shadow
+    
+    
+    */
+  </script>
+</body>
+</html>
