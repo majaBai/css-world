@@ -66,6 +66,9 @@
       background: navajowhite;
       border: 1px solid gray;
       padding: 0.2rem;
+      max-width: 200px;
+      border-radius: 6px;
+      margin-top: 14px;
     }
     .callout::before{
       content: "";
@@ -90,6 +93,7 @@
   <div class='btn-5'>Yes-5</div>
   <div class='btn-6'>Yes-6</div>
 
+  <!-- 通过继承，实现气泡 -->
   <div class='callout'>
     我是一个消息气泡，提示框框或者别的啥框框
   </div>
@@ -97,8 +101,28 @@
     /*
     -----****——----
     1. 减少重复代码
-      currentColor: 很多 CSS 颜色属性的初始值，比如border-color、outline-color、text-shadow、box-shadow
-    
+    2. currentColor: 很多 CSS 颜色属性的初始值，比如border-color、outline-color、text-shadow、box-shadow
+    3. 计算得出的居中，在视觉效果上并没有居中，例如给一个文本容器设置内边距，需要减少顶部和底部的内边距达到居中
+    4. 响应式网页，每个媒体查询都会增加维护成本，只应该用在某些大的节点处，建议：
+       使用百分比长度来取代固定长度。如果实在做不到这一点，也应该尝试使用与视口相关的单位（vw、vh、vmin 和 vmax）
+       需要在较大分辨率下得到固定宽度时，使用 max-width 而不是width
+       不要忘记为替换元素（比如 img、object、video、iframe 等）设置一个 max-width，值为 100%
+       假如背景图片需要完整地铺满一个容器，不管容器的尺寸如何变化，background-size: cover 这个属性都可以做到
+       当图片（或其他元素）以行列式进行布局时，让视口的宽度来决定列的数量，使用弹性盒布局
+    5. 合理的简写是一种良好的防卫性编码方式，可以抵御未来的风险
+    background: url(tr.png) no-repeat top right / 2em 2em,
+                url(br.png) no-repeat bottom right / 2em 2em,
+                url(bl.png) no-repeat bottom left / 2em 2em;
+
+    background: url(tr.png) top right
+                url(br.png) bottom right,
+                url(bl.png) bottom left;
+    background-size: 2em 2em;
+    background-repeat: no-repeat;
+
+    6. css 预处理器，saas/stylus/less
+    在每个项目开始时使用纯 CSS，只有当代码开始变得无法保持 DRY 时，才切换到预处理器的方案
+
     
     */
   </script>

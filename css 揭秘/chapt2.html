@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背景与边框</title>
+    <style>
+        .box{
+            height: 200px;
+            width:200px;
+            margin-bottom: 10px;
+        }
+        .bk-border, .bk-border-new {
+            background: rebeccapurple;
+            border: 10px dashed blanchedalmond;
+            text-align: center;
+            line-height: 200px;
+        }
+        
+        .img-box{
+            border: 10px dashed hsla(0,0%,100%,.5);
+            background: greenyellow;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .bk-border-new {
+            background-clip: padding-box;
+        }
+
+        .test-shadow, .test-shadow2, .test-shadow3 {
+            background: yellowgreen;
+            /* x偏移量 | y偏移量 | 阴影模糊半径 | 阴影扩散半径 |  阴影颜色 */
+            box-shadow: 0 0 0 10px #655;
+            margin-bottom: 35px;
+            margin-left: 10px;
+        }
+        .test-shadow2 {
+            box-shadow: 0 0 0 10px #655, 0 0 0 15px deeppink;
+        }
+        .test-shadow3 {
+            padding: 15px;
+            box-shadow: inset 0 0 0 10px #655, inset 0 0 0 15px deeppink;
+        }
+
+        .outline {
+            background: yellowgreen;
+            border: 10px solid #655;
+            outline: 5px solid deeppink;
+        }
+    </style>
+</head>
+<body>
+    <h3>半透明边框</h3> 
+    <div class='bk-border box'>背景是紫色，侵入边框</div>
+    <div class='img-box box'>
+        <img src="../pic1.jpeg">
+    </div>
+    <div class='bk-border-new box'>背景色不再侵入边框</div>
+    
+    <h3>多重边框示例</h3>    
+    <div class='test-shadow box'></div>
+    <div class='test-shadow2 box'>在边框处，点击事件失效</div>
+    <div class='test-shadow3 box'>通过内边距,事件生效</div>
+
+    <div class='outline box'>outline 生成多边框</div>
+
+    <script>
+        function bindEvents () {
+            const ele = document.querySelector('.test-shadow2')
+            ele.addEventListener('click', e => {
+                console.log('clicked')
+            })
+
+            const ele2 = document.querySelector('.test-shadow3')
+            ele2.addEventListener('click', e => {
+                console.log('clicked inset')
+            })
+        }
+        function main () {
+            bindEvents()
+        }
+        main()
+    /*
+     --------****--------
+     1. 半透明边框 RGBA/HSLA
+        默认情况下，背景会延伸到边框所在的区域下层
+        background-clip: 默认值 border-box 意味着背景会被元素的 border box（边框的外沿框）裁切掉
+                         如果不希望背景侵入边框所在的范围，我们要做的就是把它的值设为 padding-box
+    
+     2. 多重边框 
+        a. box-shadow
+            支持逗号分隔语法，我们可以创建任意数量的投影, 实现假的多重边框
+            注意：不会影响布局，可以通过内边距或外边距（这取决于投影是内嵌和还是外扩的）来额外模拟出边框所需要占据的空间
+                也不会受到 box-sizing 属性的影响
+                假边框上的事件失效
+        b. outline
+    */
+    </script>
+    
+</body>
+</html>
