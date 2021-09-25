@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流向的改变</title>
+    <style>
+        .ell { 
+        width: 240px; 
+        white-space: nowrap; 
+        text-overflow: ellipsis; 
+        overflow: hidden; 
+        }
+        img {
+            height: 50px;
+        }
+        .rtl-direction{
+            direction: rtl;
+        }
+        .img-box {
+            text-align: justify; 
+            direction: rtl;
+            width: 150px;
+        }
+
+        .rtl { 
+        direction: rtl; 
+        unicode-bidi: bidi-override; 
+        } 
+        .rtl > span { 
+        background-color: #ddd; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class='rtl-direction'>
+        <img src="pic1.jpeg">
+        <img src="hot.png">
+    </div>
+    <div>
+        <img src="pic1.jpeg">
+        <img src="hot.png">
+    </div>
+
+    <p class='img-box'> 
+        <img src="pic1.jpeg"> 
+        <img src="pic1.jpeg"> 
+        <img src="pic1.jpeg"> 
+       </p>
+
+    <!-- <p class="ell" dir="ltr">开头是我，这是中间，然后就是结束</p> 
+    <p class="ell" dir="rtl">开头是我，这是中间，然后就是结束</p>   -->
+
+
+    <p class="rtl">开头是我，<span style="unicode-bidi:normal;">这是中间</span>，然后是结束</p> 
+    <p class="rtl">开头是我，<span style="unicode-bidi:embed;">这是中间</span>，然后是结束</p>
+
+    <script>
+        /*
+        --------*****------
+        1. direction 改变水平流向; 只要是内联元素，只要与书写流相关，都可以试试 direction 属性
+        direction: ltr/ rtl;
+
+
+        2. direction + unicode-bidi 文每个字符都反向呈现
+
+        3. writing-mode 文本布局,针对东亚文字
+        
+        */
+    </script>
+    
+</body>
+</html>

@@ -5,8 +5,125 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>元素显隐</title>
+    <style>
+        .hidden1 {
+            display: none
+        }
+        .hidden2 {
+            visibility: hidden;
+        }
+        .hidden3 {
+            opacity: 0;
+            /* position 决定是否占据空间 */
+            position: absolute;
+        }
+
+        .box, .box2{
+            height: 100px;
+            width: 200px;
+            background-color: red;
+            margin: 10px 0
+        }
+
+        .box > .target { 
+            /* display 不会有过渡效果 */
+        display: none; 
+        position: absolute; 
+        opacity: 0; 
+        transition: opacity .25s; 
+        }
+        .box:hover > .target { 
+        display: block; 
+        opacity: 1; 
+        }
+
+        .box2 > .target2 {
+        visibility: hidden;
+        position: absolute; 
+        opacity: 0; 
+        transition: opacity 1s; 
+        }
+
+        .box2:hover > .target2 { 
+        visibility: visible;
+        opacity: 1; 
+        transition: opacity 1s; 
+        }
+       
+    </style>
+
 </head>
 <body>
+    <div class='hidden1'>隐藏1 display: none</div>
+    <div class=' hidden2'>隐藏2 visibility: hidden</div>
+    <div class=' hidden3'>隐藏3 opacity: 0</div>
+    <div>前面有不可见的元素</div>
+
+    <ul style="visibility:hidden;"> 
+        <li style="visibility:visible;">visible列表 1</li> 
+       <li>列表 2</li>
+       <li>列表 3</li>
+       <li style="visibility:visible;">visible列表 4</li>
+    </ul>
+
+    <div>列表2/3隐藏了，1/4依然可见</div>
+
+    <div class='box'>
+        <div class='target'>
+            显隐目标元素
+        </div>
+    </div>
+
+    <div class='box2'>
+        <div class='target2'>
+            显隐目标元素2
+        </div>
+    </div>
+    <script>
+
+        function checkElement () {
+            const h1 = document.querySelector('.hidden1')
+            const h2 = document.querySelector('.hidden2')
+            const h3 = document.querySelector('.hidden3')
+
+            h1.addEventListener('click' , (e) => {
+                console.log('点击 display: none， 无效')
+            })
+            h2.addEventListener('click' , (e) => {
+                console.log('点击 visibility: hidden， 无效')
+            })
+            h3.addEventListener('click' , (e) => {
+                console.log('点击 opacity: 0')
+            })
+        }
+
+        function main() {
+            checkElement()
+        }
+        main()
+        /*
+        --------****-------
+        1. 隐藏元素
+        display: none; 不占据空间，不能点击，资源有加载，DOM 可访问, 辅助设备无法访问
+        visibility: hidden; 占据空间, 不能点击，辅助设备无法访问
+        opacity: 0; 占据空间(根据position属性而定，absolute/fixed 不占据空间)，可以点击
+        
+
+        display: none 真正意义上的隐藏
+        visibility 父元素设置 visibility:hidden，子元素也会看不见, 除非子元素自己设置了visibility:visible
+
+        2. visibility 与 transition 实现显隐过度效果
+        
+         transition-property: background-color, color;
+         transition-duration: 1s;
+         transition-timing-function: ease-out;
+
+         简写 transition: <property> <duration> <timing-function> <delay>
+
+        
+        
+        */
+    </script>
     
 </body>
 </html>
