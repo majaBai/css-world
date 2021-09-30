@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>边框内圆角</title>
+  <style>
+    .box {
+      background: #655;
+      padding: .8em;
+      margin: 10px 0;
+    }
+    .box2 {
+      background: tan;
+      border-radius: .8em;
+      padding: 1em;
+      outline: .6em solid #655;
+      margin: 30px 10px;
+    }
+    .box3 {
+      box-shadow: 0 0 0 .4em #655;
+    }
+    .inner-box {
+      background: tan;
+      border-radius: .8em;
+      padding: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="inner-box">
+    I have a nice subtle inner rounding,
+    don't I look pretty? （两个元素实现）
+   </div>
+  </div>
+
+  <div class='box2'>
+    I have a nice subtle inner rounding,
+    don't I look pretty? (内圆外方，有间隙)
+  </div>
+
+  <div class='box2 box3'>
+    I have a nice subtle inner rounding,
+    don't I look pretty? (box-shadow 填充间隙)
+  </div>
+  <script>
+    /*
+    ------******-------
+    问题： 我们需要一个容器，只在内侧有圆角，而边框或描边的四个角在外部仍然保持直角的形状
+     1. 使用两个元素实现
+     2. 使用一个元素，outline + box-shadow
+    
+    */
+  </script>
+  
+</body>
+</html>

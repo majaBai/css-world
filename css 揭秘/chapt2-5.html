@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>条纹背景</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 150px;
+      margin: 10px 0
+    }
+     .gradient {
+      background: linear-gradient(#fb3, #58a);
+     }
+
+     .gradient1 {
+      background: linear-gradient(#fb3 30%, #58a 70%);
+     }
+
+     .gradient2 {
+      background: linear-gradient(#fb3 50%, #58a 50%);
+     }
+
+     .gradient3 {
+      background: linear-gradient(#fb3 50%, #58a 50%);
+      background-size: 100% 40px; 
+     }
+
+     .gradient4 {
+      background: linear-gradient(#fb3 30%, #58a 30%);
+      background-size: 100% 30px;
+     }
+     .gradient5 {
+      background: linear-gradient(#fb3 33.3%, rgb(165, 167, 169) 0, #58a 66.6%, yellowgreen 0);
+      /* 上面的设置效果等同于下面， 因为如果某个色标的位置值比整个列表中在它之前的色标的位置值都要
+       小，则该色标的位置值会被设置为它前面所有色标位置值的最大值*/
+      /* background: linear-gradient(#fb3 33.3%, rgb(165, 167, 169) 33.3%, #58a 66.6%, yellowgreen 66.6%); */
+      background-size: 100% 45px;
+     }
+  </style>
+</head>
+<body>
+  <h3>横向条纹</h3>
+  <div class='box gradient'>默认线性渐变</div>
+  <div class='box gradient1'>让两个色标更近一点，渐变区域变小</div>
+  <div class='box gradient2'>让两个色标各占一半，没有渐变</div>
+  <div class='box gradient3'>渐变生成的条纹</div>
+  <div class='box gradient4'>不等宽条纹</div>
+  <div class='box gradient5'>多色条纹</div>
+
+  <h3>垂直条纹</h3>
+  <script>
+    /*
+    --------******------
+    背景：CSS 线性渐变，background-size
+     渐变是一种由代码生成的图像，我们能像对待其他任何背景图像那样对待它，而且还可以通过 background-size 来调整其尺寸
+    
+    
+    */
+  </script>
+  
+</body>
+</html>

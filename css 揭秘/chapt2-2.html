@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>背景与边框</title>
+    <title>多层边框</title>
     <style>
         .box{
             height: 200px;
@@ -49,6 +49,11 @@
             background: yellowgreen;
             border: 10px solid #655;
             outline: 5px solid deeppink;
+            margin: 30px 0;
+        }
+        .gap {
+            outline-offset: 1px;
+            border-radius: 8px;
         }
     </style>
 </head>
@@ -65,7 +70,10 @@
     <div class='test-shadow2 box'>在边框处，点击事件失效</div>
     <div class='test-shadow3 box'>通过内边距,事件生效</div>
 
-    <div class='outline box'>outline 生成多边框</div>
+    <div class='outline box'>outline 双层边框,事件生效</div>
+    <div class='gap outline box'>outline 与边框间隙</div>
+
+
 
     <script>
         function bindEvents () {
@@ -77,6 +85,11 @@
             const ele2 = document.querySelector('.test-shadow3')
             ele2.addEventListener('click', e => {
                 console.log('clicked inset')
+            })
+
+            const ele3 = document.querySelector('.outline')
+            ele3.addEventListener('click', e => {
+                console.log('outline click')
             })
         }
         function main () {
@@ -96,7 +109,8 @@
             注意：不会影响布局，可以通过内边距或外边距（这取决于投影是内嵌和还是外扩的）来额外模拟出边框所需要占据的空间
                 也不会受到 box-sizing 属性的影响
                 假边框上的事件失效
-        b. outline
+        b. outline 适合双层边框
+           设置 offset 可实现 outline 和真正 border 之间的距离，可以为负值，表现为缝隙效果; 但是描边不会贴合 border-radius 属性产生的圆角
     */
     </script>
     
