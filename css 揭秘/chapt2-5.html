@@ -39,6 +39,29 @@
       /* background: linear-gradient(#fb3 33.3%, rgb(165, 167, 169) 33.3%, #58a 66.6%, yellowgreen 66.6%); */
       background-size: 100% 45px;
      }
+
+    .v-gradient {
+      background:linear-gradient(to right, /* 或 90deg */#fb3 50%, #58a 0);
+      background-size: 30px 100%;
+    }
+
+    .x-gradient {
+      background:linear-gradient(45deg, #fb3 50%, #58a 0);
+      background-size: 30px 30px;
+    }
+
+    .x-gradient1 {
+      background: linear-gradient(45deg,
+ #fb3 25%, #58a 0, #58a 50%,
+ #fb3 0, #fb3 75%, #58a 0);
+      background-size: 30px 30px;
+    }
+  .x-gradient2{
+    background: repeating-linear-gradient(60deg,
+ #fb3, #fb3 15px, #58a 0, #58a 30px);
+/* background-size: 42.426406871px 42.426406871px; */
+  }
+
   </style>
 </head>
 <body>
@@ -51,6 +74,13 @@
   <div class='box gradient5'>多色条纹</div>
 
   <h3>垂直条纹</h3>
+  <div class='box v-gradient'>垂直条纹</div>
+
+  <h3>斜向条纹</h3>
+  <div class='box x-gradient'>斜向条纹</div>
+  <div class='box x-gradient1'>斜向条纹</div>
+  <div class='box x-gradient2'>控制条纹斜度</div>
+
   <script>
     /*
     --------******------

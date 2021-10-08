@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>几何图形背景</title>
+
+  <style>
+    .box {
+      width: 300px;
+      height: 150px;
+      margin: 10px 0
+    }
+    .grid {
+      background: white;
+      background-image: linear-gradient(90deg,
+      rgba(200,0,0,.5) 50%, transparent 0),
+      linear-gradient(
+      rgba(200,0,0,.5) 50%, transparent 0);
+      background-size: 30px 30px;
+    }
+    .grid1 {
+      background: #58a;
+      background-image:
+      linear-gradient(white 1px, transparent 0),
+      linear-gradient(90deg, white 1px, transparent 0);
+      background-size: 30px 30px;
+    }
+    .circle {
+      background: #655;
+      background-image: radial-gradient(tan 30%, transparent 0);
+      background-size: 30px 30px;
+    }
+    .circle1 {
+      background: #655;
+      background-image: radial-gradient(tan 30%, transparent 0),
+      radial-gradient(tan 30%, transparent 0);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+    }
+
+    .bord {
+      background: #eee;
+      background-image:
+      linear-gradient(45deg, #bbb 50%, transparent 0);
+      background-size: 30px 30px;
+    }
+    .bord1{
+      background: #eee;
+      background-image:
+      linear-gradient(45deg, #bbb 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #bbb 0);
+      background-size: 30px 30px;
+    }
+    .bord2 {
+      background: #eee;
+      background-image:
+      linear-gradient(45deg, #bbb 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #bbb 0);
+      background-position: 0 0, 15px 15px;
+      background-size: 30px 30px;
+    }
+    .bord3 {
+      background: #eee;
+      background-image:
+      linear-gradient(45deg, #bbb 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #bbb 0),
+      linear-gradient(45deg, #bbb 25%, transparent 0),
+      linear-gradient(45deg, transparent 75%, #bbb 0);
+      background-position: 0 0, 15px 15px,
+      15px 15px, 30px 30px;
+      background-size: 30px 30px;
+    }
+  </style>
+</head>
+<body>
+  <h3>网格---线性渐变</h3>
+  <div class='box grid'></div>
+  <div class='box grid1'></div>
+
+  <h3>波点---径向渐变</h3>
+  <div class='box circle'></div>
+  <!-- 真正的波点，第二层背景的偏移定位值必须是贴片宽高的一半 -->
+  <div class='box circle1'></div>
+
+  <h3>棋盘</h3>
+  <div class='box bord'></div>
+  <div class='box bord1'></div>
+  <div class='box bord2'></div>
+  <div class='box bord3'></div>
+  
+</body>
+</html>
