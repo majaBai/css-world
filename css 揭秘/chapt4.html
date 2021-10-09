@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视觉效果</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 50px;
+      background: #f58;
+    }
+    .shadow1 {
+      box-shadow: 0 5px 4px -4px black;
+    }
+    .shadow2 {
+                  
+      box-shadow: 5px 0 5px -5px black,
+                  -5px 0 5px -5px black;
+    }
+    .container {
+      height: 400px
+    }
+    .container, main::before {
+      background: url("../pic1.jpeg") 0 / cover fixed;
+    }
+    .main {
+      position: relative;
+    background: hsla(0,0%,100%,.3);
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    width: 50%;
+    padding: 10px;
+    }
+    main::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      filter: blur(20px);
+      margin: -30px;
+    }
+
+  </style>
+</head>
+<body>
+  <h3>单侧投影</h3>
+  <div class='box shadow1'></div>
+
+  <h3>双侧侧投影</h3>
+  <div class='box shadow2'></div>
+
+  <h3>毛玻璃效果</h3>
+  <div class='container'>
+    <div class='main'>
+      毛玻璃效果
+    </div>
+  </div>
+  <script>
+    /*
+    
+    
+    
+    */
+  </script>
+  
+</body>
+</html>

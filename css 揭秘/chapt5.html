@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字体排印</title>
+  <style>
+    .container {
+      width: 200px;
+      height: 200px;
+    }
+    .container :nth-child(even) {
+      background: blue;
+    }
+    .font {
+      background: deeppink;
+      color: white;
+      text-align: center;
+      width: 180px;
+    }
+    .font-box {
+      text-shadow: 1px 1px black, -1px -1px black,
+                   1px -1px black, -1px 1px black;
+    }
+    .font-box2 {
+      background: #203;
+      color: #ffc;
+      text-shadow: 0 0 .1em, 0 0 .3em;
+      transition: 1s;
+    }
+    .font-box2:hover {
+      color: transparent;
+      text-shadow: 0 0 .1em white, 0 0 .3em white;
+      /* filter: blur(.1em); */
+    }
+  </style>
+</head>
+<body>
+  <h3>斑马条纹</h3>
+  <div class='container'>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+  </div>
+
+  <h3>空心字</h3>
+  <div class='font font-box'>CSS</div>
+
+  <h3>发光字</h3>
+  <div class='font font-box2'>Glow</div>
+  <script>
+    /*
+    
+    */
+  </script>
+  
+</body>
+</html>
