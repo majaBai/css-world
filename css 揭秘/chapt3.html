@@ -5,8 +5,255 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>几何形状</title>
+  <style>
+    .square {
+      width: 200px;
+      height: 200px;
+      background: #fb3;
+      margin: 10px 0;
+    }
+    .rectangle {
+      width: 200px;
+      height: 150px;
+      background: #fb3;
+      margin: 10px 0;
+
+    }
+    .rectangle1 {
+      width: 150px;
+      height: 100px;
+      background: #fb3;
+      margin: 10px 0;
+
+    }
+    .circle {
+      /* border-radius 大于等于正方形边长的一半或者直接设置 50% */
+      border-radius: 100px; 
+    }
+    .ellipse{
+      border-radius: 50%;
+    }
+    .ellipse1 {
+      /* 为所有四个角提供完全不同的水平和垂直半径 */
+      border-radius: 50% / 100% 100% 0 0;
+    }
+    .ellipse2 {
+      border-radius: 100% 0 0 0;;
+    }
+
+    .skewX {
+      padding: 4px;
+      transform: skewX(-45deg);
+      transform-origin: bottom;
+      padding-left: 20px;
+    box-sizing: border-box;
+    }
+    .skewX-inner {
+      padding: 4px;
+      transform: skewX(45deg);
+      transform-origin: bottom;
+    }
+    .skewX-one {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      margin: 10px 0;
+      padding-left: 20px;
+      box-sizing: border-box;
+    }
+    .skewX-one::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      transform: skew(45deg);
+      background: #fb3;
+      transform-origin: top;
+      z-index: -1;
+    }
+    .picture {
+      width: 400px;
+      transform: rotate(45deg);
+      overflow: hidden;
+    }
+
+    .picture > img {
+      max-width: 100%;
+      transform: rotate(-45deg) ;
+    }
+    .clip-box {
+      width: 200px;
+      height: 100px;
+      margin:10px;
+      background: #58a;
+    }
+    .clip {
+      background: #58a;
+      background:linear-gradient(-45deg, transparent 15px, #58a 0);
+    }
+    .clip1 {
+      background : linear-gradient(-45deg, transparent 15px, #58a 0),
+      linear-gradient(45deg, transparent 15px, #655 0);
+    }
+    .clip2 {
+      background: #58a;
+      background:
+      linear-gradient(-45deg, transparent 15px, #58a 0)
+      right,
+      linear-gradient(45deg, transparent 15px, #655 0)
+      left;
+      background-size: 50% 100%;
+      background-repeat: no-repeat;
+    }
+
+  .clip3 {
+    background: #58a;
+    background:
+    radial-gradient(circle at top left,
+    transparent 15px, red 0) top left,
+    radial-gradient(circle at top right,
+    transparent 15px, #58a 0) top right,
+    radial-gradient(circle at bottom right,
+    transparent 15px, #58a 0) bottom right,
+    radial-gradient(circle at bottom left,
+    transparent 15px, #58a 0) bottom left;
+    background-size: 50% 50%;
+    background-repeat: no-repeat;
+  }
+
+  .clip4 {
+    width: 100px;
+    height: 50px;
+    margin:10px;
+    background: #58a;
+    transform: perspective(.5em) rotateX(5deg);
+  }
+  .clip5-outer {
+    position: relative;
+    display: inline-block;
+    padding: .5em 1em .35em;
+  }
+  .clip5-outer::before {
+    content: ''; /* 用伪元素来生成一个矩形 */
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    z-index: -1;
+    background: #58a;
+    transform: perspective(.5em) rotateX(5deg);
+    /* 当它在 3D 空间中旋转时，可以把它的底边固定住 */
+    transform-origin: bottom;
+  }
+
+  .pie, .pie1, .pie2 {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: yellowgreen;
+    background-image: linear-gradient(to right, transparent 50%, #655 0);
+  }
+  .pie::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%; 
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    /* 比例超过 50% 出现bug */
+    transform: rotate(.1turn);
+  }
+
+  @keyframes spin {
+    to { transform: rotate(.5turn); }
+  }
+  @keyframes bg { 
+    50% { background: #655; }
+  }
+  .pie1::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    animation: spin 3s linear infinite,
+    bg 6s step-end infinite; 
+  }
+  .pie2::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    animation:  spin 50s linear infinite,
+                bg 100s step-end infinite;
+    animation-play-state: paused;
+    animation-delay: inherit;
+  }
+
+  </style>
 </head>
 <body>
+  <h3>圆</h3>
+  <div class='square circle'></div>
+  <h3>椭圆</h3>
+  <div class='rectangle ellipse'></div>
+
+  <h3>半椭圆</h3>
+  <div class='rectangle1 ellipse1'></div>
+
+  <h3>1/4椭圆</h3>
+  <div class='rectangle ellipse2'></div>
+
+  <h3>平行四边形</h3>
+  <div class='rectangle  skewX'>内容倾斜了</div>
+
+  <div class='rectangle  skewX'>
+    <div class='skewX-inner'>
+      两个元素, 不倾斜
+    </div>
+  </div>
+
+  <div class='skewX-one'>为元素，不倾斜</div>
+
+  <h3>棱形</h3>
+  <div class="picture">
+    <img src="../pic1.jpeg" />
+   </div>
+
+   <h3>切角</h3>
+   <div class='clip-box clip'></div>
+   <div class='clip-box clip1'></div>
+   <div class='clip-box clip2'></div>
+
+   <h3>弧形切角</h3>
+   <div class='clip-box clip3'></div>
+
+   <h3>梯形</h3>
+   <div class='clip4'>文字变形</div>
+   <div class='clip5-outer'>
+     <div class='clip5-inner'>为元素，不变形文字</div>
+   </div>
+
+   <h3>饼图</h3>
+   <div class="pie"></div>
+
+   <div class="pie1" style="animation-delay: -20s"></div>
+   <div class="pie1" style="animation-delay: -60s"></div>
+
+   <div class="pie2" style="animation-delay: -60s"></div>
+
+  <script>
+    /*
+    1. border-radius 属性的基本用法, 支持px或者百分比 ，它可以单独指定水平和垂直半径，只要用一个斜杠（/）分隔这两个值即可
+                     百分比值会基于元素的尺寸进行解析，即宽度用于水平半径的解析，而高度用于垂直半径的解析
+
+    */
+  </script>
   
 </body>
 </html>
