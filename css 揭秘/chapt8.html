@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>过渡与动画</title>
+  <style>
+    .container {
+      height: 250px;
+      width: 30px;
+      background: gray;
+      border-bottom: 8px solid greenyellow;
+      display: flex;
+      justify-content: center;
+    }
+    .ball  {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: hotpink;
+      animation: bounce 3s ease-in-out;
+      animation-fill-mode:forwards;
+    }
+    @keyframes bounce {
+      0% {transform: translateY(0px);}
+      25% {transform: translateY(230px);}
+      38% {transform: translateY(80px);}
+      50% {transform: translateY(230px);}
+      68% {transform: translateY(130px);}
+      75% {transform: translateY(230px);}
+      88% {transform: translateY(200px);}
+      100% {transform: translateY(230px);}
+    }
+
+  </style>
+</head>
+<body>
+  <h3>弹跳</h3>
+  <div class='container'>
+    <div class='ball'></div>
+  </div>
+
+  <div>打字</div>
+  <script>
+
+    /*
+    1. 缓动效果： 弹跳效果
+       尺寸变化、角度变化
+    
+    */
+  </script>
+</body>
+</html>

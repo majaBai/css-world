@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>结构与布局</title>
+  <style>
+    .img-container {
+      max-width: 50px;
+      max-width: min-content;
+      margin: auto;
+      border: 1px solid gray;
+    }
+    .img-container > img {
+      max-width:inherit;
+    }
+
+    .list > li {
+      margin: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      background: pink;
+      text-align: center;
+      list-style-type: none;
+      line-height: 40px;
+    }
+    
+    /* 从第3项开始更改样式 */
+    li:nth-child(n + 3) {
+      background: red;
+    }
+    
+    li:first-child:nth-last-child(n+5),
+    li:first-child:nth-last-child(n+5) ~ li {
+    /* 当列表至少包含5项时，命中所有列表项 */
+      background: blue;
+    }
+
+    .footer {
+      padding: 1em;
+      padding: 1em calc(50% - 450px);
+      background: #333;
+    }
+
+    .inline-horizon {
+      text-align: center;
+    }
+    .block-horizon {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .block-horizon-outer {
+      position: relative;
+    }
+    .flex-box {
+      /* align-self: center; */
+      display: flex;
+    justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>自适应内部元素</h3>
+  <div class='img-container'>
+    <img src="../pic3.jpeg">
+    对于现代浏览器来说，后一条 max-width 声明会覆盖前一条。如果
+    img-container 的尺寸是由内部因素决定时，第二条规则中的 max-width: inherit
+    就不会生效了。
+  </div>
+
+  <h3>根据元素数量更改样式</h3>
+  <ul class='list'>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  
+  <ul class='list'>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+  </ul>
+
+  <h3>满幅背景，内容定宽</h3>
+  <div class='footer'>
+    内容定宽 900px;
+    我们可以增加一条回退样式来增强向后兼
+    容性。这样即使浏览器不支持 calc()，我们也至少可以得到一个相对合理
+    的内边距：
+  </div>
+
+  <h3>垂直居中</h3>
+  <div class="inline-horizon">
+    <span>我是行内元素，水平居中</span>
+  </div>
+  
+  <!-- <div class="block-horizon-outer">
+  <div class="block-horizon">我是fei行内元素，水平居中</div>
+  </div> -->
+
+  <div class='flex-box'>flex box center</div>
+  
+
+  <script>
+    /*
+    1. max-width: min-content ,这个关键字将解析为这个容器内部最大的不可断行元素的宽度（即最宽的单词、图片或具有固定宽度的盒元素）
+    2. n+b 这种形式的表达式可以选中从第 b 个开始的所有子元素。举例来说，:nth-child(n+4) 将会选中除了第一、二、三个子元素之外的所有子元素
+       -n+b 这种形式的表达式可以选中开头的 b 个元素
+
+       li:first-child:nth-last-child(n+2):nth-last-child(-n+6),
+        li:first-child:nth-last-child(n+2):nth-last-child(-n+6) ~ li {
+         当列表包含2～6项时，命中所有列表项 
+        }
+    3. margin: 1em auto; auto 所产生的左右外边距实际上都等于视口宽度的一半减去内容宽度的一半
+       calc 替代： margin: 1em calc(（100% - 内容宽度）/ 2)
+
+    4. 水平居中：如果它是一个行内元素，就对它的父元素应用 text-align: center
+
+    */
+  </script>
+  
+</body>
+</html>
